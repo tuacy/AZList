@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="set_dash_board_view_duration">1000</integer>
+</resources>

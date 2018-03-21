@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AZWaveSideBarView">
+        <!-- slide bar 有效内容背景 -->
+        <attr name="backgroundColor" format="color|reference" />
+        <!-- slide bar　描边 -->
+        <attr name="strokeColor" format="color|reference" />
+        <!-- slide bar 文字颜色 -->
+        <attr name="textColor" format="color|reference" />
+        <!-- slide bar　文字大小 -->
+        <attr name="textSize" format="dimension" />
+        <!-- slide bar 选中文字颜色 -->
+        <attr name="selectTextColor" format="color|reference" />
+        <!-- slide bar 选中文字大小 -->
+        <attr name="selectTextSize" format="dimension" />
+        <!-- slide bar　选中时候提示文字颜色 -->
+        <attr name="hintTextColor" format="color|reference" />
+        <!-- slide bar　选中时候提示文字大小 -->
+        <attr name="hintTextSize" format="dimension" />
+        <!-- slide bar　选中时候提示圆形半径 -->
+        <attr name="hintCircleRadius" format="dimension" />
+        <!-- slide bar　选中时候提示圆形颜色 -->
+        <attr name="hintCircleColor" format="color|reference" />
+        <!-- slide bar　选中时候波浪颜色 -->
+        <attr name="waveColor" format="color|reference" />
+        <!-- slide bar　选中时候波浪半径 -->
+        <attr name="waveRadius" format="dimension" />
+        <!-- slide bar　上下padding -->
+        <attr name="contentPadding" format="dimension" />
+    </declare-styleable>
+</resources>

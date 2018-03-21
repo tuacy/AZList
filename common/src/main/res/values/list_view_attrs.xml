@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="UDLRSlideListView">
+        <!-- 是否固定title -->
+        <attr name="pin_title" format="boolean" />
+        <!-- 从哪一列开始可以滑动 -->
+        <attr name="slide_start" format="integer" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- DashboardView start -->
+    <declare-styleable name="DashboardView">
+        <!-- 扇形半径 -->
+        <attr name="radius" format="dimension" />
+        <!-- 起始角度 -->
+        <attr name="startAngle" format="float" />
+        <!-- 绘制角度 -->
+        <attr name="sweepAngle" format="float" />
+        <!-- 长刻度条数 -->
+        <attr name="longScaleCount" format="integer" />
+        <!-- 长刻度宽度 -->
+        <attr name="longScaleWidth" format="dimension" />
+        <!-- 长刻度高度 -->
+        <attr name="longScaleHeight" format="dimension" />
+        <!-- 长刻度里面短刻度条数 -->
+        <attr name="shortScaleCount" format="integer" />
+        <!-- 长刻度里面短刻度宽度 -->
+        <attr name="shortScaleWidth" format="dimension" />
+        <!-- 长刻度里面短刻度高度 -->
+        <attr name="shortScaleHeight" format="dimension" />
+        <!-- 长刻度里面字符距离圆弧的大小 -->
+        <attr name="scaleNumberSpaceHeight" format="dimension" />
+        <!-- 刻度颜色 -->
+        <attr name="sliceColor" format="color" />
+        <!-- 弧度颜色 -->
+        <attr name="arcColor" format="color" />
+        <!-- 弧度颜色 -->
+        <attr name="arcStrokeWidth" format="dimension" />
+        <!-- 刻度字体大小 -->
+        <attr name="scaleTextSize" format="dimension" />
+        <!--字体颜色-->
+        <attr name="scaleTextColor" format="color" />
+        <!--中间值字体大小-->
+        <attr name="valueTextSize" format="dimension" />
+        <!--中间值单位大小-->
+        <attr name="valueUnitSize" format="dimension" />
+        <!--中间值字体颜色-->
+        <attr name="valueTextColor" format="color" />
+        <!--指针半径-->
+        <attr name="pointerRadius" format="dimension" />
+        <!--指针颜色-->
+        <attr name="pointerColor" format="color" />
+        <!--数据中心圆半径-->
+        <attr name="circleValueRadiusRatio" format="float" />
+        <!--中心圆颜色-->
+        <attr name="circleColor" format="color" />
+        <!--最小值-->
+        <attr name="minValue" format="float" />
+        <!--最大值-->
+        <attr name="maxValue" format="float" />
+        <!--当前值-->
+        <attr name="currentValue" format="float" />
+        <!--当前值单位-->
+        <attr name="currentValueUnit" format="string" />
+        <!--背景颜色-->
+        <attr name="bgColor" format="color" />
+    </declare-styleable>
+    <!-- DashboardView end -->
+
+    <declare-styleable name="EnergyView">
+        <attr name="energy_radius" format="dimension" />
+        <attr name="energy_outerCircleRadius" format="dimension" />
+        <attr name="energy_outerCircleSpace" format="dimension" />
+        <attr name="energy_outerCircleColor" format="color" />
+        <attr name="energy_baseLineWidth" format="dimension" />
+        <attr name="energy_baseLineColor" format="color" />
+        <attr name="energy_focusLineWidth" format="dimension" />
+        <attr name="energy_focusLineColor" format="color" />
+        <attr name="energy_focusRadius" format="dimension" />
+        <attr name="energy_titleTextColor" format="color" />
+        <attr name="energy_titleTextSize" format="dimension" />
+        <attr name="energy_titleTextContent" format="string" />
+        <attr name="energy_valueTextColor" format="color" />
+        <attr name="energy_valueTextSize" format="dimension" />
+        <attr name="energy_valueCurrent" format="float" />
+        <attr name="energy_valueTotal" format="float" />
+        <attr name="energy_unitTextColor" format="color" />
+        <attr name="energy_unitTextSize" format="dimension" />
+        <attr name="energy_unitTextContent" format="string" />
+        <attr name="energy_text_space" format="dimension" />
+    </declare-styleable>
+
+</resources>

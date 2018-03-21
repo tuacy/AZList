@@ -1,0 +1,21 @@
+<resources>
+    <declare-styleable name="PieGraph">
+        <!-- 饼状图的半径 -->
+        <attr name="pie_circle_radius" format="dimension" />
+        <!-- 文字的大小 -->
+        <attr name="pie_text_size" format="dimension" />
+        <!-- 文字的颜色 -->
+        <attr name="pie_text_color" format="color" />
+        <!-- 画文字部分延着半径多出来的长度 -->
+        <attr name="pie_marker_line1" format="dimension" />
+        <!-- 画文字的时候先在原有的圆上面延伸出来的长度 -->
+        <attr name="pie_show_radio" format="boolean" />
+        <!-- 是否可以旋转 -->
+        <attr name="pie_can_rotate" format="boolean" />
+        <!-- 画文字部水平多出来的长度 -->
+        <attr name="pie_outer_ring_width" format="dimension" />
+        <attr name="pie_inter_ring_normal_width" format="dimension" />
+        <attr name="pie_inter_ring_focus_width" format="dimension" />
+        <attr name="pie_ring_space" format="dimension" />
+    </declare-styleable>
+</resources>

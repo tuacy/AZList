@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">common</string>
+    <string name="common_million">万</string>
+    <string name="common_mega">百万</string>
+    <string name="common_must">千万</string>
+    <string name="common_hundred_million">亿</string>
+
+    <string name="data_empty">暂无数据!~</string>
+    <string name="statue_refresh">刷新</string>
+    <string name="statue_loading">加载中!~~~</string>
+</resources>

@@ -1,0 +1,20 @@
+<resources>
+    <declare-styleable name="EnergySaveView">
+        <attr name="energy_save_radius" format="dimension" />
+        <attr name="energy_save_ring_width" format="dimension" />
+        <attr name="energy_save_normal_ring_color" format="color" />
+        <attr name="energy_save_select_ring_color" format="color" />
+        <attr name="energy_save_inner_radius" format="dimension" />
+        <attr name="energy_save_inner_color" format="color" />
+        <attr name="energy_save_inner_text_content" format="string" />
+        <attr name="energy_save_inner_text_size" format="dimension" />
+        <attr name="energy_save_inner_text_color" format="color" />
+        <attr name="energy_save_inner_radio_value" format="float" />
+        <attr name="energy_save_inner_radio_size" format="dimension" />
+        <attr name="energy_save_inner_radio_color" format="color" />
+        <attr name="energy_save_flag_inner_radio_size" format="dimension" />
+        <attr name="energy_save_flag_inner_radio_color" format="color" />
+        <attr name="energy_save_flag_outer_radio_size" format="dimension" />
+        <attr name="energy_save_flag_outer_radio_color" format="color" />
+    </declare-styleable>
+</resources>

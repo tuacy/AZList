@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <com.opensource.svgaplayer.SVGAImageView
+        android:id="@+id/svg_status_loading"
+        android:layout_height="200dp"
+        android:layout_width="200dp"
+        android:scaleType="fitCenter"
+        app:source="status_loading.svga"
+        app:antiAlias="true" />
+
+    <com.pilot.common.widget.SpreadTextView
+        android:id="@+id/spread_loading_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:spread_text_color="#7c7c7c"
+        app:spread_text_value="@string/statue_loading"
+        app:spread_text_size="16sp" />
+
+</LinearLayout>

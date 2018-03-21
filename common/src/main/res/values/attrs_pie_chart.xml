@@ -1,0 +1,33 @@
+<resources>
+    <declare-styleable name="PieChart">
+        <!-- 饼状图的半径 -->
+        <attr name="pie_chart_circle_radius" format="dimension" />
+        <!-- 外环没有选中时的大小 -->
+        <attr name="pie_chart_ring_normal_width" format="dimension" />
+        <!-- 外环选中时的大小 -->
+        <attr name="pie_chart_ring_select_width" format="dimension" />
+        <!-- 外圆内圆间隙 -->
+        <attr name="pie_chart_inner_circle_space" format="dimension" />
+        <attr name="pie_chart_inner_circle_color" format="color" />
+        <!-- 文字的大小 -->
+        <attr name="pie_chart_text_size" format="dimension" />
+        <!-- 文字的颜色 -->
+        <attr name="pie_chart_text_color" format="color" />
+        <!-- 文字延长线的长度 -->
+        <attr name="pie_chart_marker_line_length" format="dimension" />
+        <!-- 文字延长线颜色 -->
+        <attr name="pie_chart_marker_line_color" format="color" />
+        <!-- 画文字的时候先在原有的圆上面延伸出来的长度 -->
+        <attr name="pie_chart_show_radio" format="boolean" />
+        <!-- 是否可以旋转 -->
+        <attr name="pie_chart_can_rotate" format="boolean" />
+        <attr name="pie_chart_title_text" format="string" />
+        <attr name="pie_chart_title_size" format="dimension" />
+        <attr name="pie_chart_title_color" format="color" />
+        <attr name="pie_chart_unit_text" format="string" />
+        <attr name="pie_chart_unit_size" format="dimension" />
+        <attr name="pie_chart_unit_color" format="color" />
+        <attr name="pie_chart_value_size" format="dimension" />
+        <attr name="pie_chart_value_color" format="color" />
+    </declare-styleable>
+</resources>

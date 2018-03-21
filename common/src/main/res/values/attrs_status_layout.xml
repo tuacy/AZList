@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="StatusLayout">
+        <attr name="status_content_layout" format="reference" />
+        <attr name="status_loading_layout" format="reference" />
+        <attr name="status_empty_layout" format="reference" />
+        <attr name="status_exception_layout" format="reference" />
+    </declare-styleable>
+</resources>

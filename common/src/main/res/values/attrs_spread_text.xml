@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="SpreadTextView">
+        <attr name="spread_text_size" format="dimension" />
+        <attr name="spread_text_color" format="color" />
+        <attr name="spread_text_value" format="string" />
+    </declare-styleable>
+</resources>
