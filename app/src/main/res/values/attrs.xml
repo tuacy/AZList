@@ -25,7 +25,11 @@
         <attr name="waveColor" format="color|reference" />
         <!-- slide bar　选中时候波浪半径 -->
         <attr name="waveRadius" format="dimension" />
-        <!-- slide bar　上下padding -->
+        <!-- slide bar　里面文字上＋下padding -->
         <attr name="contentPadding" format="dimension" />
+        <!-- slide bar　上+下+右padding -->
+        <attr name="barPadding" format="dimension" />
+        <!-- slide bar　宽度 -->
+        <attr name="barWidth" format="dimension" />
     </declare-styleable>
 </resources>
