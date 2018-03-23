@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.os.Build;
 import android.support.annotation.Nullable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -25,9 +24,7 @@ import java.util.List;
 
 public class AZWaveSideBarView extends View {
 
-	// 计算波浪贝塞尔曲线的角弧长值
-	private static final double ANGLE   = Math.PI * 45 / 180;
-	private static final double ANGLE_R = Math.PI * 90 / 180;
+	private static final double ANGLE_45 = Math.PI * 45 / 180;
 
 	private int mBackgroundColor;
 	private int mStrokeColor;
@@ -45,19 +42,19 @@ public class AZWaveSideBarView extends View {
 	private int mBarPadding;
 	private int mBarWidth;
 
-	private List<String>                mLetters;
-	private RectF                       mSlideBarRect;
-	private TextPaint                   mTextPaint;
-	private Paint                       mPaint;
-	private Paint                       mWavePaint;
-	private Path                        mWavePath;
-	private int                         mSelect;
-	private int                         mPreSelect;
-	private int                         mNewSelect;
-	private ValueAnimator               mRatioAnimator;
-	private float                       mAnimationRatio;
-	private OnTouchLetterChangeListener mListener;
-	private int                         mTouchY;
+	private List<String>           mLetters;
+	private RectF                  mSlideBarRect;
+	private TextPaint              mTextPaint;
+	private Paint                  mPaint;
+	private Paint                  mWavePaint;
+	private Path                   mWavePath;
+	private int                    mSelect;
+	private int                    mPreSelect;
+	private int                    mNewSelect;
+	private ValueAnimator          mRatioAnimator;
+	private float                  mAnimationRatio;
+	private OnLetterChangeListener mListener;
+	private int                    mTouchY;
 
 	public AZWaveSideBarView(Context context) {
 		this(context, null);
@@ -165,7 +162,8 @@ public class AZWaveSideBarView extends View {
 		//顺序绘制文字
 		float itemHeight = (mSlideBarRect.bottom - mSlideBarRect.top - mContentPadding * 2) / mLetters.size();
 		for (int index = 0; index < mLetters.size(); index++) {
-			float baseLine = TextDrawUtils.getTextBaseLineByTop(mContentPadding + itemHeight * index, mTextPaint, mTextSize);
+			float baseLine = TextDrawUtils.getTextBaseLineByCenter(
+				mSlideBarRect.top + mContentPadding + itemHeight * index + itemHeight / 2, mTextPaint, mTextSize);
 			mTextPaint.setColor(mTextColor);
 			mTextPaint.setTextSize(mTextSize);
 			mTextPaint.setTextAlign(Paint.Align.CENTER);
@@ -180,24 +178,27 @@ public class AZWaveSideBarView extends View {
 	private void drawWave(Canvas canvas) {
 		mWavePath.reset();
 		// 移动到起始点
-		mWavePath.moveTo(getMeasuredWidth(), mTouchY - 3 * mWaveRadius);
+		int startX = getMeasuredWidth();
+		int startY = mTouchY - 3 * mWaveRadius;
+		mWavePath.moveTo(startX, startY);
 		//计算上部控制点的Y轴位置
-		int controlTopY = mTouchY - 2 * mWaveRadius;
-
-		//计算上部结束点的坐标
-		int endTopX = (int) (getMeasuredWidth() - mWaveRadius * Math.cos(ANGLE) * mAnimationRatio);
-		int endTopY = (int) (controlTopY + mWaveRadius * Math.sin(ANGLE));
-		mWavePath.quadTo(getMeasuredWidth(), controlTopY, endTopX, endTopY);
-
+		int topControlX = getMeasuredWidth();
+		int topControlY = mTouchY - 2 * mWaveRadius;
+		int topEndX = (int) (getMeasuredWidth() - mWaveRadius * Math.cos(ANGLE_45) * mAnimationRatio);
+		int topEndY = (int) (topControlY + mWaveRadius * Math.sin(ANGLE_45));
+		mWavePath.quadTo(topControlX, topControlY, topEndX, topEndY);
 		//计算中心控制点的坐标
-		int controlCenterX = (int) (getMeasuredWidth() - 1.8f * mWaveRadius * Math.sin(ANGLE_R) * mAnimationRatio);
-		int controlCenterY = mTouchY;
+		int centerControlX = (int) (getMeasuredWidth() - 1.8f * mWaveRadius * mAnimationRatio);
+		int centerControlY = mTouchY;
+		int centerEndX = topEndX;
+		int centerEndY = (int) (mTouchY + 2 * mWaveRadius - mWaveRadius * Math.cos(ANGLE_45));
+		mWavePath.quadTo(centerControlX, centerControlY, centerEndX, centerEndY);
 		//计算下部结束点的坐标
-		int controlBottomY = mTouchY + 2 * mWaveRadius;
-		int endBottomX = endTopX;
-		int endBottomY = (int) (controlBottomY - mWaveRadius * Math.cos(ANGLE));
-		mWavePath.quadTo(controlCenterX, controlCenterY, endBottomX, endBottomY);
-		mWavePath.quadTo(getMeasuredWidth(), controlBottomY, getMeasuredWidth(), controlBottomY + mWaveRadius);
+		int bottomEndX = getMeasuredWidth();
+		int bottomEndY = mTouchY + 3 * mWaveRadius;
+		int bottomControlX = getMeasuredWidth();
+		int bottomControlY = mTouchY + 2 * mWaveRadius;
+		mWavePath.quadTo(bottomControlX, bottomControlY, bottomEndX, bottomEndY);
 		mWavePath.close();
 		mWavePaint.setStyle(Paint.Style.FILL);
 		mWavePaint.setColor(mWaveColor);
@@ -208,6 +209,16 @@ public class AZWaveSideBarView extends View {
 	 * 绘制选中时的提示信息(圆＋文字)
 	 */
 	private void drawSelect(Canvas canvas) {
+		if (mSelect != -1) {
+			mTextPaint.setColor(mSelectTextColor);
+			mTextPaint.setTextSize(mSelectTextSize);
+			mTextPaint.setTextAlign(Paint.Align.CENTER);
+			float itemHeight = (mSlideBarRect.bottom - mSlideBarRect.top - mContentPadding * 2) / mLetters.size();
+			float baseLine = TextDrawUtils.getTextBaseLineByCenter(
+				mSlideBarRect.top + mContentPadding + itemHeight * mSelect + itemHeight / 2, mTextPaint, mTextSize);
+			float pointX = mSlideBarRect.left + (mSlideBarRect.right - mSlideBarRect.left) / 2.0f;
+			canvas.drawText(mLetters.get(mSelect), pointX, baseLine, mTextPaint);
+		}
 	}
 
 	/**
@@ -296,11 +307,11 @@ public class AZWaveSideBarView extends View {
 		mRatioAnimator.start();
 	}
 
-	public void setOnTouchLetterChangeListener(OnTouchLetterChangeListener listener) {
+	public void setOnLetterChangeListener(OnLetterChangeListener listener) {
 		this.mListener = listener;
 	}
 
-	public interface OnTouchLetterChangeListener {
+	public interface OnLetterChangeListener {
 
 		void onLetterChange(String letter);
 	}
