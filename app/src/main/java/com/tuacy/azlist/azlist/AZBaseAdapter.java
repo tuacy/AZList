@@ -21,6 +21,27 @@ public abstract class AZBaseAdapter<T, VH extends RecyclerView.ViewHolder> exten
 		notifyDataSetChanged();
 	}
 
+	public String getLetters(int position) {
+		if (mDataList == null || mDataList.isEmpty()) {
+			return null;
+		}
+		return mDataList.get(position).getLetters();
+	}
+
+	public int getLettersFirstPosition(String letters) {
+		if (mDataList == null || mDataList.isEmpty()) {
+			return -1;
+		}
+		int position = -1;
+		for (int index = 0; index < mDataList.size(); index++) {
+			if (mDataList.get(index).getLetters().endsWith(letters)) {
+				position = index;
+				break;
+			}
+		}
+		return position;
+	}
+
 	@Override
 	public int getItemCount() {
 		return mDataList == null ? 0 : mDataList.size();

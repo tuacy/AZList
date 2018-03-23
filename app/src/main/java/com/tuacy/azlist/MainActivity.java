@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 	private RecyclerView           mRecyclerView;
 	private AZWaveSideBarView      mBarList;
 	private List<AZEntity<String>> mDateList;
+	private ItemAdapter mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +37,32 @@ public class MainActivity extends AppCompatActivity {
 	private void initView() {
 		mRecyclerView = findViewById(R.id.recycler_list);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-		mRecyclerView.addItemDecoration(new AZTitleDecoration(mContext, 30, 16, Color.parseColor("#FF000000"), 8));
+		mRecyclerView.addItemDecoration(
+			new AZTitleDecoration(mContext, 30, 16, Color.parseColor("#FF000000"), Color.parseColor("#FFDFDFDF"), 8));
 		mBarList = findViewById(R.id.bar_list);
 	}
 
 	private void initEvent() {
-
+		mBarList.setOnLetterChangeListener(new AZWaveSideBarView.OnLetterChangeListener() {
+			@Override
+			public void onLetterChange(String letter) {
+				int position = mAdapter.getLettersFirstPosition(letter);
+				if (position != -1) {
+					if (mRecyclerView.getLayoutManager() instanceof LinearLayoutManager) {
+						LinearLayoutManager manager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+						manager.scrollToPositionWithOffset(position, 0);
+					} else {
+						mRecyclerView.getLayoutManager().scrollToPosition(position);
+					}
+				}
+			}
+		});
 	}
 
 	private void initData() {
 		mDateList = filledData(getResources().getStringArray(R.array.date));
 		Collections.sort(mDateList, new PinyinComparator());
-		mRecyclerView.setAdapter(new ItemAdapter(mDateList));
+		mRecyclerView.setAdapter(mAdapter = new ItemAdapter(mDateList));
 	}
 
 	private List<AZEntity<String>> filledData(String[] date) {

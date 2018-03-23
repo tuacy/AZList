@@ -61,4 +61,10 @@ public class TextDrawUtils {
 		float height = fontMetrics.bottom - fontMetrics.top;
 		return center + height / 2 - fontMetrics.bottom;
 	}
+
+	public static float getTextBaseLineByCenter(float center, TextPaint paint) {
+		Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+		float height = fontMetrics.bottom - fontMetrics.top;
+		return center + height / 2 - fontMetrics.bottom;
+	}
 }

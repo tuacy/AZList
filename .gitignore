@@ -1,8 +1,8 @@
-.gradle
-.idea
-build
-AZList.iml
+.gradle/
+.idea/
+build/
 gradlew.bat
 gradle
 gradlew
 local.properties
+*.iml

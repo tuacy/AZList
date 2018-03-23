@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="com.squareup.wire:wire-runtime:2.3.0-RC1@jar">
     <CLASSES>
-      <root url="jar://E:/StudioSpace/.gradle/caches/modules-2/files-2.1/com.squareup.wire/wire-runtime/2.3.0-RC1/30b5f581c479cb70b71adba368dbd2445607e74a/wire-runtime-2.3.0-RC1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.wire/wire-runtime/2.3.0-RC1/30b5f581c479cb70b71adba368dbd2445607e74a/wire-runtime-2.3.0-RC1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
