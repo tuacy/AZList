@@ -42,6 +42,20 @@ public abstract class AZBaseAdapter<T, VH extends RecyclerView.ViewHolder> exten
 		return position;
 	}
 
+	public int getNextLetterPosition(int position) {
+		if (mDataList == null || mDataList.isEmpty() || mDataList.size() <= position + 1) {
+			return -1;
+		}
+		int resultPosition = -1;
+		for (int index = position + 1; index < mDataList.size(); index++) {
+			if (!mDataList.get(position).getLetters().endsWith(mDataList.get(index).getLetters())) {
+				resultPosition = index;
+				break;
+			}
+		}
+		return resultPosition;
+	}
+
 	@Override
 	public int getItemCount() {
 		return mDataList == null ? 0 : mDataList.size();

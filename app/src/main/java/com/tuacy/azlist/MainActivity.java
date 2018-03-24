@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 		mRecyclerView = findViewById(R.id.recycler_list);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
 		mRecyclerView.addItemDecoration(
-			new AZTitleDecoration(mContext, 30, 16, Color.parseColor("#FF000000"), Color.parseColor("#FFDFDFDF"), 8));
+			new AZTitleDecoration(new AZTitleDecoration.TitleAttributes(mContext)));
 		mBarList = findViewById(R.id.bar_list);
 	}
 
