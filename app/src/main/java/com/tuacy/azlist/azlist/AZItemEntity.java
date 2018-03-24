@@ -1,7 +1,7 @@
 package com.tuacy.azlist.azlist;
 
 
-public class AZEntity<T> {
+public class AZItemEntity<T> {
 
 	private T      mValue;
 	private String mLetters;

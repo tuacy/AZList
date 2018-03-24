@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.tuacy.azlist.azlist.AZWaveSideBarView
+    <com.tuacy.azlist.azlist.AZSideBarView
         android:id="@+id/bar_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

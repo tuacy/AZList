@@ -1,16 +1,15 @@
 package com.tuacy.azlist;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.pilot.common.utils.PinyinUtils;
-import com.tuacy.azlist.azlist.AZEntity;
+import com.tuacy.azlist.azlist.AZItemEntity;
+import com.tuacy.azlist.azlist.AZSideBarView;
 import com.tuacy.azlist.azlist.AZTitleDecoration;
-import com.tuacy.azlist.azlist.AZWaveSideBarView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,11 +17,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-	private Context                mContext;
-	private RecyclerView           mRecyclerView;
-	private AZWaveSideBarView      mBarList;
-	private List<AZEntity<String>> mDateList;
-	private ItemAdapter mAdapter;
+	private Context       mContext;
+	private RecyclerView  mRecyclerView;
+	private AZSideBarView mBarList;
+	private ItemAdapter   mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +35,12 @@ public class MainActivity extends AppCompatActivity {
 	private void initView() {
 		mRecyclerView = findViewById(R.id.recycler_list);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
-		mRecyclerView.addItemDecoration(
-			new AZTitleDecoration(new AZTitleDecoration.TitleAttributes(mContext)));
+		mRecyclerView.addItemDecoration(new AZTitleDecoration(new AZTitleDecoration.TitleAttributes(mContext)));
 		mBarList = findViewById(R.id.bar_list);
 	}
 
 	private void initEvent() {
-		mBarList.setOnLetterChangeListener(new AZWaveSideBarView.OnLetterChangeListener() {
+		mBarList.setOnLetterChangeListener(new AZSideBarView.OnLetterChangeListener() {
 			@Override
 			public void onLetterChange(String letter) {
 				int position = mAdapter.getLettersFirstPosition(letter);
@@ -60,30 +57,29 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private void initData() {
-		mDateList = filledData(getResources().getStringArray(R.array.date));
-		Collections.sort(mDateList, new PinyinComparator());
-		mRecyclerView.setAdapter(mAdapter = new ItemAdapter(mDateList));
+		List<AZItemEntity<String>> dateList = fillData(getResources().getStringArray(R.array.region));
+		Collections.sort(dateList, new PinyinComparator());
+		mRecyclerView.setAdapter(mAdapter = new ItemAdapter(dateList));
 	}
 
-	private List<AZEntity<String>> filledData(String[] date) {
-		List<AZEntity<String>> mSortList = new ArrayList<>();
+	private List<AZItemEntity<String>> fillData(String[] date) {
+		List<AZItemEntity<String>> sortList = new ArrayList<>();
 		for (String aDate : date) {
-			AZEntity<String> sortModel = new AZEntity<>();
-			sortModel.setValue(aDate);
+			AZItemEntity<String> item = new AZItemEntity<>();
+			item.setValue(aDate);
 			//汉字转换成拼音
 			String pinyin = PinyinUtils.getPingYin(aDate);
-			String sortString = pinyin.substring(0, 1).toUpperCase();
-
+			//取第一个首字母
+			String letters = pinyin.substring(0, 1).toUpperCase();
 			// 正则表达式，判断首字母是否是英文字母
-			if (sortString.matches("[A-Z]")) {
-				sortModel.setLetters(sortString.toUpperCase());
+			if (letters.matches("[A-Z]")) {
+				item.setLetters(letters.toUpperCase());
 			} else {
-				sortModel.setLetters("#");
+				item.setLetters("#");
 			}
-
-			mSortList.add(sortModel);
+			sortList.add(item);
 		}
-		return mSortList;
+		return sortList;
 
 	}
 }

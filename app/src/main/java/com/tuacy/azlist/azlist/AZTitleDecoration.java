@@ -21,9 +21,11 @@ public class AZTitleDecoration extends RecyclerView.ItemDecoration {
 	public AZTitleDecoration(TitleAttributes attributes) {
 		mTitleAttributes = attributes;
 		mTitleTextPaint = new TextPaint();
+		mTitleTextPaint.setAntiAlias(true);
 		mTitleTextPaint.setTextSize(mTitleAttributes.mTextSize);
 		mTitleTextPaint.setColor(mTitleAttributes.mTextColor);
 		mBackgroundPaint = new Paint();
+		mBackgroundPaint.setAntiAlias(true);
 		mBackgroundPaint.setColor(mTitleAttributes.mBackgroundColor);
 	}
 
@@ -80,8 +82,11 @@ public class AZTitleDecoration extends RecyclerView.ItemDecoration {
 				}
 			}
 		}
+		mBackgroundPaint.setColor(mTitleAttributes.mBackgroundColor);
 		c.drawRect(parent.getPaddingLeft(), parent.getPaddingTop(), parent.getRight() - parent.getPaddingRight(),
 				   parent.getPaddingTop() + mTitleAttributes.mItemHeight, mBackgroundPaint);
+		mTitleTextPaint.setTextSize(mTitleAttributes.mTextSize);
+		mTitleTextPaint.setColor(mTitleAttributes.mTextColor);
 		c.drawText(adapter.getLetters(firstAdapterPosition),
 				   parent.getPaddingLeft() + firstView.getPaddingLeft() + mTitleAttributes.mTextPadding,
 				   TextDrawUtils.getTextBaseLineByCenter(parent.getPaddingTop() + mTitleAttributes.mItemHeight / 2, mTitleTextPaint),

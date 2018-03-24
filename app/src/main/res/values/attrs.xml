@@ -1,35 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- slide bar 有效内容背景 -->
+    <attr name="backgroundColor" format="color|reference" />
+    <!-- slide bar　描边 -->
+    <attr name="strokeColor" format="color|reference" />
+    <!-- slide bar 文字颜色 -->
+    <attr name="textColor" format="color|reference" />
+    <!-- slide bar　文字大小 -->
+    <attr name="textSize" format="dimension" />
+    <!-- slide bar 选中文字颜色 -->
+    <attr name="selectTextColor" format="color|reference" />
+    <!-- slide bar 选中文字大小 -->
+    <attr name="selectTextSize" format="dimension" />
+    <!-- slide bar　选中时候提示文字颜色 -->
+    <attr name="hintTextColor" format="color|reference" />
+    <!-- slide bar　选中时候提示文字大小 -->
+    <attr name="hintTextSize" format="dimension" />
+    <!-- slide bar　选中时候提示圆形半径 -->
+    <attr name="hintCircleRadius" format="dimension" />
+    <!-- slide bar　选中时候提示圆形颜色 -->
+    <attr name="hintCircleColor" format="color|reference" />
+    <!-- slide bar　选中时候波浪颜色 -->
+    <attr name="waveColor" format="color|reference" />
+    <!-- slide bar　选中时候波浪半径 -->
+    <attr name="waveRadius" format="dimension" />
+    <!-- slide bar　里面文字上＋下padding -->
+    <attr name="contentPadding" format="dimension" />
+    <!-- slide bar　上+下+右padding -->
+    <attr name="barPadding" format="dimension" />
+    <!-- slide bar　宽度 -->
+    <attr name="barWidth" format="dimension" />
     <declare-styleable name="AZWaveSideBarView">
         <!-- slide bar 有效内容背景 -->
-        <attr name="backgroundColor" format="color|reference" />
+        <attr name="backgroundColor" />
         <!-- slide bar　描边 -->
-        <attr name="strokeColor" format="color|reference" />
+        <attr name="strokeColor" />
         <!-- slide bar 文字颜色 -->
-        <attr name="textColor" format="color|reference" />
+        <attr name="textColor" />
         <!-- slide bar　文字大小 -->
-        <attr name="textSize" format="dimension" />
+        <attr name="textSize" />
         <!-- slide bar 选中文字颜色 -->
-        <attr name="selectTextColor" format="color|reference" />
+        <attr name="selectTextColor" />
         <!-- slide bar 选中文字大小 -->
-        <attr name="selectTextSize" format="dimension" />
+        <attr name="selectTextSize" />
         <!-- slide bar　选中时候提示文字颜色 -->
-        <attr name="hintTextColor" format="color|reference" />
+        <attr name="hintTextColor" />
         <!-- slide bar　选中时候提示文字大小 -->
-        <attr name="hintTextSize" format="dimension" />
+        <attr name="hintTextSize" />
         <!-- slide bar　选中时候提示圆形半径 -->
-        <attr name="hintCircleRadius" format="dimension" />
+        <attr name="hintCircleRadius" />
         <!-- slide bar　选中时候提示圆形颜色 -->
-        <attr name="hintCircleColor" format="color|reference" />
+        <attr name="hintCircleColor" />
         <!-- slide bar　选中时候波浪颜色 -->
-        <attr name="waveColor" format="color|reference" />
+        <attr name="waveColor" />
         <!-- slide bar　选中时候波浪半径 -->
-        <attr name="waveRadius" format="dimension" />
+        <attr name="waveRadius" />
         <!-- slide bar　里面文字上＋下padding -->
-        <attr name="contentPadding" format="dimension" />
+        <attr name="contentPadding" />
         <!-- slide bar　上+下+右padding -->
-        <attr name="barPadding" format="dimension" />
+        <attr name="barPadding" />
         <!-- slide bar　宽度 -->
-        <attr name="barWidth" format="dimension" />
+        <attr name="barWidth" />
+    </declare-styleable>
+
+    <declare-styleable name="AZSideBarView">
+        <!-- slide bar 有效内容背景 -->
+        <attr name="backgroundColor" />
+        <!-- slide bar　描边 -->
+        <attr name="strokeColor" />
+        <!-- slide bar 文字颜色 -->
+        <attr name="textColor" />
+        <!-- slide bar　文字大小 -->
+        <attr name="textSize" />
+        <!-- slide bar 选中文字颜色 -->
+        <attr name="selectTextColor" />
+        <!-- slide bar 选中文字大小 -->
+        <attr name="selectTextSize" />
+        <!-- slide bar　选中时候提示文字颜色 -->
+        <attr name="hintTextColor" />
+        <!-- slide bar　选中时候提示文字大小 -->
+        <attr name="hintTextSize" />
+        <!-- slide bar　选中时候提示圆形半径 -->
+        <attr name="hintCircleRadius" />
+        <!-- slide bar　选中时候提示圆形颜色 -->
+        <attr name="hintCircleColor" />
+        <!-- slide bar　里面文字上＋下padding -->
+        <attr name="contentPadding" />
+        <!-- slide bar　上+下+右padding -->
+        <attr name="barPadding" />
+        <!-- slide bar　宽度 -->
+        <attr name="barWidth" />
     </declare-styleable>
 </resources>

@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.tuacy.azlist.azlist.AZBaseAdapter;
-import com.tuacy.azlist.azlist.AZEntity;
+import com.tuacy.azlist.azlist.AZItemEntity;
 
 import java.util.List;
 
 public class ItemAdapter extends AZBaseAdapter<String, ItemAdapter.ItemHolder> {
 
-	public ItemAdapter(List<AZEntity<String>> dataList) {
+	public ItemAdapter(List<AZItemEntity<String>> dataList) {
 		super(dataList);
 	}
 

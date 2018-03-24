@@ -6,17 +6,17 @@ import java.util.List;
 
 public abstract class AZBaseAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-	protected List<AZEntity<T>> mDataList;
+	protected List<AZItemEntity<T>> mDataList;
 
-	public AZBaseAdapter(List<AZEntity<T>> dataList) {
+	public AZBaseAdapter(List<AZItemEntity<T>> dataList) {
 		mDataList = dataList;
 	}
 
-	public List<AZEntity<T>> getDataList() {
+	public List<AZItemEntity<T>> getDataList() {
 		return mDataList;
 	}
 
-	public void setDataList(List<AZEntity<T>> dataList) {
+	public void setDataList(List<AZItemEntity<T>> dataList) {
 		mDataList = dataList;
 		notifyDataSetChanged();
 	}
@@ -34,7 +34,7 @@ public abstract class AZBaseAdapter<T, VH extends RecyclerView.ViewHolder> exten
 		}
 		int position = -1;
 		for (int index = 0; index < mDataList.size(); index++) {
-			if (mDataList.get(index).getLetters().endsWith(letters)) {
+			if (mDataList.get(index).getLetters().equals(letters)) {
 				position = index;
 				break;
 			}
@@ -48,7 +48,7 @@ public abstract class AZBaseAdapter<T, VH extends RecyclerView.ViewHolder> exten
 		}
 		int resultPosition = -1;
 		for (int index = position + 1; index < mDataList.size(); index++) {
-			if (!mDataList.get(position).getLetters().endsWith(mDataList.get(index).getLetters())) {
+			if (!mDataList.get(position).getLetters().equals(mDataList.get(index).getLetters())) {
 				resultPosition = index;
 				break;
 			}
