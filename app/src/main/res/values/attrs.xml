@@ -20,6 +20,11 @@
     <attr name="hintCircleRadius" format="dimension" />
     <!-- slide bar　选中时候提示圆形颜色 -->
     <attr name="hintCircleColor" format="color|reference" />
+    <!-- slide bar　选中时候提示背景形状 -->
+    <attr name="hintShape" format="enum" >
+        <enum name="circle" value="0" />
+        <enum name="rectangle" value="1" />
+    </attr>
     <!-- slide bar　选中时候波浪颜色 -->
     <attr name="waveColor" format="color|reference" />
     <!-- slide bar　选中时候波浪半径 -->
@@ -82,6 +87,7 @@
         <attr name="hintTextSize" />
         <!-- slide bar　选中时候提示圆形半径 -->
         <attr name="hintCircleRadius" />
+        <attr name="hintShape" />
         <!-- slide bar　选中时候提示圆形颜色 -->
         <attr name="hintCircleColor" />
         <!-- slide bar　里面文字上＋下padding -->

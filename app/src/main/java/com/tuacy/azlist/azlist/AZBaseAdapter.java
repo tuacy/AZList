@@ -21,20 +21,20 @@ public abstract class AZBaseAdapter<T, VH extends RecyclerView.ViewHolder> exten
 		notifyDataSetChanged();
 	}
 
-	public String getLetters(int position) {
+	public String getSortLetters(int position) {
 		if (mDataList == null || mDataList.isEmpty()) {
 			return null;
 		}
-		return mDataList.get(position).getLetters();
+		return mDataList.get(position).getSortLetters();
 	}
 
-	public int getLettersFirstPosition(String letters) {
+	public int getSortLettersFirstPosition(String letters) {
 		if (mDataList == null || mDataList.isEmpty()) {
 			return -1;
 		}
 		int position = -1;
 		for (int index = 0; index < mDataList.size(); index++) {
-			if (mDataList.get(index).getLetters().equals(letters)) {
+			if (mDataList.get(index).getSortLetters().equals(letters)) {
 				position = index;
 				break;
 			}
@@ -42,13 +42,13 @@ public abstract class AZBaseAdapter<T, VH extends RecyclerView.ViewHolder> exten
 		return position;
 	}
 
-	public int getNextLetterPosition(int position) {
+	public int getNextSortLetterPosition(int position) {
 		if (mDataList == null || mDataList.isEmpty() || mDataList.size() <= position + 1) {
 			return -1;
 		}
 		int resultPosition = -1;
 		for (int index = position + 1; index < mDataList.size(); index++) {
-			if (!mDataList.get(position).getLetters().equals(mDataList.get(index).getLetters())) {
+			if (!mDataList.get(position).getSortLetters().equals(mDataList.get(index).getSortLetters())) {
 				resultPosition = index;
 				break;
 			}

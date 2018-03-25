@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 		mBarList.setOnLetterChangeListener(new AZSideBarView.OnLetterChangeListener() {
 			@Override
 			public void onLetterChange(String letter) {
-				int position = mAdapter.getLettersFirstPosition(letter);
+				int position = mAdapter.getSortLettersFirstPosition(letter);
 				if (position != -1) {
 					if (mRecyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 						LinearLayoutManager manager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
 			String letters = pinyin.substring(0, 1).toUpperCase();
 			// 正则表达式，判断首字母是否是英文字母
 			if (letters.matches("[A-Z]")) {
-				item.setLetters(letters.toUpperCase());
+				item.setSortLetters(letters.toUpperCase());
 			} else {
-				item.setLetters("#");
+				item.setSortLetters("#");
 			}
 			sortList.add(item);
 		}

@@ -8,14 +8,14 @@ import java.util.Comparator;
 public class PinyinComparator implements Comparator<AZItemEntity<String>> {
 
 	public int compare(AZItemEntity<String> o1, AZItemEntity<String> o2) {
-		if (o1.getLetters().equals("@")
-			|| o2.getLetters().equals("#")) {
+		if (o1.getSortLetters().equals("@")
+			|| o2.getSortLetters().equals("#")) {
 			return 1;
-		} else if (o1.getLetters().equals("#")
-				   || o2.getLetters().equals("@")) {
+		} else if (o1.getSortLetters().equals("#")
+				   || o2.getSortLetters().equals("@")) {
 			return -1;
 		} else {
-			return o1.getLetters().compareTo(o2.getLetters());
+			return o1.getSortLetters().compareTo(o2.getSortLetters());
 		}
 	}
 

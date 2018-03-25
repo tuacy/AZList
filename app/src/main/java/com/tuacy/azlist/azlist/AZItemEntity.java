@@ -4,7 +4,7 @@ package com.tuacy.azlist.azlist;
 public class AZItemEntity<T> {
 
 	private T      mValue;
-	private String mLetters;
+	private String mSortLetters;
 
 	public T getValue() {
 		return mValue;
@@ -14,11 +14,11 @@ public class AZItemEntity<T> {
 		mValue = value;
 	}
 
-	public String getLetters() {
-		return mLetters;
+	public String getSortLetters() {
+		return mSortLetters;
 	}
 
-	public void setLetters(String letters) {
-		mLetters = letters;
+	public void setSortLetters(String sortLetters) {
+		mSortLetters = sortLetters;
 	}
 }

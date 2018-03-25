@@ -46,7 +46,7 @@ public class AZTitleDecoration extends RecyclerView.ItemDecoration {
 			final View child = parent.getChildAt(i);
 			int position = parent.getChildAdapterPosition(child);
 			if (titleAttachView(child, parent)) {
-				drawTitleItem(c, parent, child, adapter.getLetters(position));
+				drawTitleItem(c, parent, child, adapter.getSortLetters(position));
 			}
 		}
 	}
@@ -68,7 +68,7 @@ public class AZTitleDecoration extends RecyclerView.ItemDecoration {
 		int firstAdapterPosition = parent.getChildAdapterPosition(firstView);
 		c.save();
 		//找到下一个标题对应的adapter position
-		int nextLetterAdapterPosition = adapter.getNextLetterPosition(firstAdapterPosition);
+		int nextLetterAdapterPosition = adapter.getNextSortLetterPosition(firstAdapterPosition);
 		if (nextLetterAdapterPosition != -1) {
 			//下一个标题view index
 			int nextLettersViewIndex = nextLetterAdapterPosition - firstAdapterPosition;
@@ -87,7 +87,7 @@ public class AZTitleDecoration extends RecyclerView.ItemDecoration {
 				   parent.getPaddingTop() + mTitleAttributes.mItemHeight, mBackgroundPaint);
 		mTitleTextPaint.setTextSize(mTitleAttributes.mTextSize);
 		mTitleTextPaint.setColor(mTitleAttributes.mTextColor);
-		c.drawText(adapter.getLetters(firstAdapterPosition),
+		c.drawText(adapter.getSortLetters(firstAdapterPosition),
 				   parent.getPaddingLeft() + firstView.getPaddingLeft() + mTitleAttributes.mTextPadding,
 				   TextDrawUtils.getTextBaseLineByCenter(parent.getPaddingTop() + mTitleAttributes.mItemHeight / 2, mTitleTextPaint),
 				   mTitleTextPaint);
@@ -138,7 +138,7 @@ public class AZTitleDecoration extends RecyclerView.ItemDecoration {
 		int position = parent.getChildAdapterPosition(view);
 		//第一个一定要空出区域 + 每个都和前面一个去做判断，不等于前一个则要空出区域
 		return position == 0 ||
-			   null != adapter.getDataList().get(position) && !adapter.getLetters(position).equals(adapter.getLetters(position - 1));
+			   null != adapter.getDataList().get(position) && !adapter.getSortLetters(position).equals(adapter.getSortLetters(position - 1));
 
 	}
 

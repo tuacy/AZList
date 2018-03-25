@@ -33,7 +33,7 @@ public class AZSideBarView extends View {
 	private int mHintTextSize;
 	private int mHintCircleRadius;
 	private int mHintCircleColor;
-	private int mWaveRadius;
+	private int mHintShape;
 	private int mContentPadding;
 	private int mBarPadding;
 	private int mBarWidth;
@@ -66,34 +66,32 @@ public class AZSideBarView extends View {
 
 	private void initAttribute(AttributeSet attrs, int defStyleAttr) {
 		TypedArray typeArray = getContext().obtainStyledAttributes(attrs, R.styleable.AZSideBarView, defStyleAttr, 0);
-		mBackgroundColor = typeArray.getColor(R.styleable.AZWaveSideBarView_backgroundColor, Color.parseColor("#F9F9F9"));
-		mStrokeColor = typeArray.getColor(R.styleable.AZWaveSideBarView_strokeColor, Color.parseColor("#000000"));
-		mTextColor = typeArray.getColor(R.styleable.AZWaveSideBarView_textColor, Color.parseColor("#969696"));
-		mTextSize = typeArray.getDimensionPixelOffset(R.styleable.AZWaveSideBarView_textSize,
+		mBackgroundColor = typeArray.getColor(R.styleable.AZSideBarView_backgroundColor, Color.parseColor("#F9F9F9"));
+		mStrokeColor = typeArray.getColor(R.styleable.AZSideBarView_strokeColor, Color.parseColor("#000000"));
+		mTextColor = typeArray.getColor(R.styleable.AZSideBarView_textColor, Color.parseColor("#969696"));
+		mTextSize = typeArray.getDimensionPixelOffset(R.styleable.AZSideBarView_textSize,
 													  (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10,
 																					  getResources().getDisplayMetrics()));
-		mSelectTextColor = typeArray.getColor(R.styleable.AZWaveSideBarView_selectTextColor, Color.parseColor("#FFFFFF"));
-		mSelectTextSize = typeArray.getDimensionPixelOffset(R.styleable.AZWaveSideBarView_selectTextSize,
+		mSelectTextColor = typeArray.getColor(R.styleable.AZSideBarView_selectTextColor, Color.parseColor("#FF0000"));
+		mSelectTextSize = typeArray.getDimensionPixelOffset(R.styleable.AZSideBarView_selectTextSize,
 															(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10,
 																							getResources().getDisplayMetrics()));
-		mHintTextColor = typeArray.getColor(R.styleable.AZWaveSideBarView_hintTextColor, Color.parseColor("#FFFFFF"));
-		mHintTextSize = typeArray.getDimensionPixelOffset(R.styleable.AZWaveSideBarView_hintTextSize,
+		mHintTextColor = typeArray.getColor(R.styleable.AZSideBarView_hintTextColor, Color.parseColor("#FFFFFF"));
+		mHintTextSize = typeArray.getDimensionPixelOffset(R.styleable.AZSideBarView_hintTextSize,
 														  (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 16,
 																						  getResources().getDisplayMetrics()));
-		mHintCircleRadius = typeArray.getDimensionPixelOffset(R.styleable.AZWaveSideBarView_hintCircleRadius,
+		mHintCircleRadius = typeArray.getDimensionPixelOffset(R.styleable.AZSideBarView_hintCircleRadius,
 															  (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24,
 																							  getResources().getDisplayMetrics()));
-		mHintCircleColor = typeArray.getColor(R.styleable.AZWaveSideBarView_hintCircleColor, Color.parseColor("#bef9b81b"));
-		mWaveRadius = typeArray.getDimensionPixelOffset(R.styleable.AZWaveSideBarView_waveRadius,
-														(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20,
-																						getResources().getDisplayMetrics()));
-		mContentPadding = typeArray.getDimensionPixelOffset(R.styleable.AZWaveSideBarView_contentPadding,
+		mHintCircleColor = typeArray.getColor(R.styleable.AZSideBarView_hintCircleColor, Color.parseColor("#bef9b81b"));
+		mHintShape = typeArray.getInteger(R.styleable.AZSideBarView_hintShape, 0);
+		mContentPadding = typeArray.getDimensionPixelOffset(R.styleable.AZSideBarView_contentPadding,
 															(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2,
 																							getResources().getDisplayMetrics()));
-		mBarPadding = typeArray.getDimensionPixelOffset(R.styleable.AZWaveSideBarView_barPadding,
+		mBarPadding = typeArray.getDimensionPixelOffset(R.styleable.AZSideBarView_barPadding,
 														(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6,
 																						getResources().getDisplayMetrics()));
-		mBarWidth = typeArray.getDimensionPixelOffset(R.styleable.AZWaveSideBarView_barWidth,
+		mBarWidth = typeArray.getDimensionPixelOffset(R.styleable.AZSideBarView_barWidth,
 													  (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0,
 																					  getResources().getDisplayMetrics()));
 		if (mBarWidth == 0) {
@@ -180,22 +178,25 @@ public class AZSideBarView extends View {
 	 * 绘制选中的slide bar上的那个文字
 	 */
 	private void drawHint(Canvas canvas) {
+		//x轴的移动路径
+		float circleCenterX = (getMeasuredWidth() + mHintCircleRadius) -
+							  (-getMeasuredWidth() / 2 + (getMeasuredWidth() + mHintCircleRadius)) * mAnimationRatio;
+		mPaint.setStyle(Paint.Style.FILL);
+		mPaint.setColor(mHintCircleColor);
+		if (mHintShape == 0) {
+			canvas.drawCircle(circleCenterX, getMeasuredHeight() / 2.0f, mHintCircleRadius, mPaint);
+		} else {
+			canvas.drawRect(circleCenterX - mHintCircleRadius, getMeasuredHeight() / 2.0f - mHintCircleRadius,
+							circleCenterX + mHintCircleRadius, getMeasuredHeight() / 2.0f + mHintCircleRadius, mPaint);
+		}
+		// 绘制圆中心的提示字符
 		if (mSelect != -1) {
-			//x轴的移动路径
-			float circleCenterX = (getMeasuredWidth() + mHintCircleRadius) -
-								  (2.0f * mWaveRadius + 2.0f * mHintCircleRadius) * mAnimationRatio;
-			mPaint.setStyle(Paint.Style.FILL);
-			mPaint.setColor(mHintCircleColor);
-			canvas.drawCircle(circleCenterX, mTouchY, mHintCircleRadius, mPaint);
-			// 绘制提示字符
-			if (mAnimationRatio >= 0.9f) {
-				String target = mLetters.get(mSelect);
-				float textY = TextDrawUtils.getTextBaseLineByCenter(mTouchY, mTextPaint, mHintTextSize);
-				mTextPaint.setColor(mHintTextColor);
-				mTextPaint.setTextSize(mHintTextSize);
-				mTextPaint.setTextAlign(Paint.Align.CENTER);
-				canvas.drawText(target, circleCenterX, textY, mTextPaint);
-			}
+			String target = mLetters.get(mSelect);
+			float textY = TextDrawUtils.getTextBaseLineByCenter(getMeasuredHeight() / 2.0f, mTextPaint, mHintTextSize);
+			mTextPaint.setColor(mHintTextColor);
+			mTextPaint.setTextSize(mHintTextSize);
+			mTextPaint.setTextAlign(Paint.Align.CENTER);
+			canvas.drawText(target, circleCenterX, textY, mTextPaint);
 		}
 	}
 
