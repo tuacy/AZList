@@ -9,12 +9,14 @@
         android:id="@+id/button_right_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="右边hit提示"/>
+        android:text="右边hint提示"
+        android:textAllCaps="false"/>
 
     <Button
         android:id="@+id/button_center_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="中心hit提示"/>
+        android:text="中心hint提示"
+        android:textAllCaps="false"/>
 
 </LinearLayout>
