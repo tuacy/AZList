@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_list"
+    <Button
+        android:id="@+id/button_right_hint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:text="右边hit提示"/>
 
-    <com.tuacy.azlist.azlist.AZSideBarView
-        android:id="@+id/bar_list"
+    <Button
+        android:id="@+id/button_center_hint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:hintShape="rectangle"/>
+        android:layout_height="wrap_content"
+        android:text="中心hit提示"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

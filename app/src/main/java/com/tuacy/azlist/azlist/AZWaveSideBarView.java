@@ -225,22 +225,19 @@ public class AZWaveSideBarView extends View {
 	 * 绘制选中的slide bar上的那个文字
 	 */
 	private void drawHint(Canvas canvas) {
-		if (mSelect != -1) {
-			//x轴的移动路径
-			float circleCenterX = (getMeasuredWidth() + mHintCircleRadius) -
-								  (2.0f * mWaveRadius + 2.0f * mHintCircleRadius) * mAnimationRatio;
-			mWavePaint.setStyle(Paint.Style.FILL);
-			mWavePaint.setColor(mHintCircleColor);
-			canvas.drawCircle(circleCenterX, mTouchY, mHintCircleRadius, mWavePaint);
-			// 绘制提示字符
-			if (mAnimationRatio >= 0.9f) {
-				String target = mLetters.get(mSelect);
-				float textY = TextDrawUtils.getTextBaseLineByCenter(mTouchY, mTextPaint, mHintTextSize);
-				mTextPaint.setColor(mHintTextColor);
-				mTextPaint.setTextSize(mHintTextSize);
-				mTextPaint.setTextAlign(Paint.Align.CENTER);
-				canvas.drawText(target, circleCenterX, textY, mTextPaint);
-			}
+		//x轴的移动路径
+		float circleCenterX = (getMeasuredWidth() + mHintCircleRadius) - (2.0f * mWaveRadius + 2.0f * mHintCircleRadius) * mAnimationRatio;
+		mWavePaint.setStyle(Paint.Style.FILL);
+		mWavePaint.setColor(mHintCircleColor);
+		canvas.drawCircle(circleCenterX, mTouchY, mHintCircleRadius, mWavePaint);
+		// 绘制提示字符
+		if (mAnimationRatio >= 0.9f && mSelect != -1) {
+			String target = mLetters.get(mSelect);
+			float textY = TextDrawUtils.getTextBaseLineByCenter(mTouchY, mTextPaint, mHintTextSize);
+			mTextPaint.setColor(mHintTextColor);
+			mTextPaint.setTextSize(mHintTextSize);
+			mTextPaint.setTextAlign(Paint.Align.CENTER);
+			canvas.drawText(target, circleCenterX, textY, mTextPaint);
 		}
 	}
 
@@ -252,6 +249,7 @@ public class AZWaveSideBarView extends View {
 		mNewSelect = (int) (y / (mSlideBarRect.bottom - mSlideBarRect.top) * mLetters.size());
 		switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
+				//保证down的时候在bar区域才相应事件
 				if (x < mSlideBarRect.left || y < mSlideBarRect.top || y > mSlideBarRect.bottom) {
 					return false;
 				}
@@ -260,15 +258,12 @@ public class AZWaveSideBarView extends View {
 				break;
 			case MotionEvent.ACTION_MOVE:
 				mTouchY = (int) y;
-				if (mPreSelect != mNewSelect) {
-					if (mNewSelect >= 0 && mNewSelect < mLetters.size()) {
-						mSelect = mNewSelect;
-						if (mListener != null) {
-							mListener.onLetterChange(mLetters.get(mNewSelect));
-						}
+				if (mPreSelect != mNewSelect && mNewSelect >= 0 && mNewSelect < mLetters.size()) {
+					mSelect = mNewSelect;
+					if (mListener != null) {
+						mListener.onLetterChange(mLetters.get(mNewSelect));
 					}
 				}
-				invalidate();
 				invalidate();
 				break;
 			case MotionEvent.ACTION_CANCEL:

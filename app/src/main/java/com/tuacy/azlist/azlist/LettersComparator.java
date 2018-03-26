@@ -1,11 +1,10 @@
-package com.tuacy.azlist;
+package com.tuacy.azlist.azlist;
 
 
-import com.tuacy.azlist.azlist.AZItemEntity;
 
 import java.util.Comparator;
 
-public class PinyinComparator implements Comparator<AZItemEntity<String>> {
+public class LettersComparator implements Comparator<AZItemEntity<String>> {
 
 	public int compare(AZItemEntity<String> o1, AZItemEntity<String> o2) {
 		if (o1.getSortLetters().equals("@")
