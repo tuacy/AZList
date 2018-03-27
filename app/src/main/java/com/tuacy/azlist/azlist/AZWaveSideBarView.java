@@ -241,6 +241,8 @@ public class AZWaveSideBarView extends View {
 		}
 	}
 
+
+
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent event) {
 		final float y = event.getY();

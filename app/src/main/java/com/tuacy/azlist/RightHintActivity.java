@@ -32,7 +32,7 @@ public class RightHintActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext = this;
-		setContentView(R.layout.activity_right_hit);
+		setContentView(R.layout.activity_right_hint);
 		initView();
 		initEvent();
 		initData();
